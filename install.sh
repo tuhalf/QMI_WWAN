@@ -54,7 +54,7 @@ case $(uname -r) in
         wget https://raw.githubusercontent.com/tuhalf/QMI_WWAN/main/4.14.all.zip -O drivers.zip 
         unzip drivers.zip -d $INS_DIR && rm -r drivers.zip;;
 esac
-
+mkdir /lib/modules/4.14.98-imx/kernel/drivers/usb/serial/
 echo -e "${YELLOW}Change directory to $INS_DIR/drivers${SET}"
 if [ -d "$INS_DIR/drivers" ];then
     pushd $INS_DIR/drivers
@@ -62,12 +62,6 @@ if [ -d "$INS_DIR/drivers" ];then
     popd
 fi
 
-echo -e "${YELLOW}Downloading QMI WWAN Driver for Quectel Module${SET}"
-wget https://github.com/sixfab/Sixfab_QMI_Installer/raw/main/src/Quectel_Linux_Android_QMI_WWAN_Driver_V1.2.1.zip -O qmi_wwan.zip 
-unzip qmi_wwan.zip -d $INS_DIR && rm qmi_wwan.zip
-pushd $INS_DIR/qmi_wwan_q
-make && make install
-popd
 
 echo -e "${YELLOW}Downloading Connection Manager${SET}"
 wget https://github.com/sixfab/Sixfab_QMI_Installer/raw/main/src/Quectel_QConnectManager_Linux_V1.6.1.zip -O quectel-CM.zip
